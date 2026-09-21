@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>孫中山的革命之路：1911辛亥革命</title>
+    <style>
+        /* 基礎全螢幕網頁樣式 */
+        body {
+            font-family: "Microsoft JhengHei", sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #5d4037;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            width: 95%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            min-height: 80vh;
+        }
+
+        .scene {
+            display: none;
+        }
+        .scene.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .scene-title {
+            color: #8b0000;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .btn {
+            background-color: #8b0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 10px 5px;
+            border-radius: 5px;
+        }
+        .btn:hover { background-color: #a52a2a; }
+        .btn:disabled { background-color: #ccc; cursor: not-allowed; }
+
+        /* 書籍互動 */
+        .book-container { display: flex; gap: 20px; justify-content: center; margin: 30px 0; }
+        .book {
+            border: 2px solid #ccc; padding: 20px; cursor: pointer; text-align: center; width: 200px; background: #fdfdfd;
+        }
+        .book:hover { border-color: #8b0000; }
+        .book.read { background: #e8f5e9; border-color: #4caf50; pointer-events: none; }
+
+        /* 文字 RPG */
+        .rpg-box {
+            background: #111; color: #0f0; padding: 30px; font-family: monospace; font-size: 1.2em; text-align: center;
+        }
+        .rpg-btn { background: #333; color: #fff; border: 1px solid #fff; padding: 10px; cursor: pointer; margin-top: 20px; }
+        .rpg-btn:hover { background: #555; }
+
+        /* 選擇題與因果鏈 */
+        .option-btn { display: block; width: 100%; margin: 10px 0; padding: 15px; text-align: left; font-size: 1.1em; cursor: pointer; }
+        
+        .chain-pool { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+        .chain-block { padding: 10px; background: #eee; border: 1px solid #ccc; cursor: pointer; }
+        .chain-result { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+        .chain-step { padding: 10px; background: #e8f5e9; border: 1px solid #4caf50; width: 80%; text-align: center; }
+
+        /* 小測 */
+        .quiz-item { margin-bottom: 20px; background: #fafafa; padding: 15px; border-radius: 5px; }
+        select { padding: 5px; font-size: 1em; }
+        select.correct { border: 2px solid green; background: #e8f5e9; }
+        select.wrong { border: 2px solid red; background: #ffebee; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>1911 辛亥革命：孫中山的革命之路</h1>
+        <button class="btn" onclick="goToQuiz()">直接進入小測</button>
+    </header>
+
+    <main>
+        <!-- Scene 0 -->
+        <div id="scene-0" class="scene active">
+            <h2 class="scene-title">歷史的開端</h2>
+            <p>晚清時期，內憂外患。你將代入孫中山先生的視角，踏上一條充滿危險與希望的救國之路。</p>
+            <button class="btn" onclick="changeScene(1)">開始旅程</button>
+        </div>
+
+        <!-- Scene 1: 閱讀書籍 -->
+        <div id="scene-1" class="scene">
+            <h2 class="scene-title">第一章：學習西方精神與制度</h2>
+            <p>我在海外求學，為了尋找救國的藥方，我開始大量閱讀西方書籍：</p>
+            <div class="book-container">
+                <div class="book" id="book1" onclick="readBook(1)">
+                    <h3>《法國大革命》</h3>
+                </div>
+                <div class="book" id="book2" onclick="readBook(2)">
+                    <h3>《西方政治制度》</h3>
+                </div>
+            </div>
+            <p id="book-feedback" style="color: #8b0000; font-weight: bold;"></p>
+            <button id="btn-next-1" class="btn" style="display:none;" onclick="changeScene(2)">下一步</button>
+        </div>
+
+        <!-- Scene 2: 上書李鴻章 十六字訣 -->
+        <div id="scene-2" class="scene">
+            <h2 class="scene-title">第二章：和平改革的嘗試</h2>
+            <p>在決定革命之前，我曾希望能透過和平改良來拯救大清。我寫了一封信給直隸總督李鴻章，提出了著名的<b>《十六字訣》</b>作為改革方向。</p>
+            <p>請問這《十六字訣》的內容是什麼？</p>
+            <button class="option-btn" onclick="checkSlogan(false, this)">A. 驅除韃虜，恢復中華，創立民國，平均地權</button>
+            <button class="option-btn" onclick="checkSlogan(true, this)">B. 人能盡其才，地能盡其利，物能盡其用，貨能暢其流</button>
+            <button class="option-btn" onclick="checkSlogan(false, this)">C. 師夷長技以制夷，中學為體，西學為用</button>
+            <p id="slogan-feedback" style="font-weight: bold; margin-top: 10px;"></p>
+            <button id="btn-next-2" class="btn" style="display:none;" onclick="changeScene(3)">上書失敗，轉向革命</button>
+        </div>
+
+        <!-- Scene 3: 倫敦蒙難記 -->
+        <div id="scene-3" class="scene">
+            <h2 class="scene-title">第三章：倫敦蒙難記</h2>
+            <p>上書失敗後，我深知清廷無可救藥，決定投身革命。1896年，我流亡英國倫敦...</p>
+            <div class="rpg-box">
+                <div id="rpg-text">你走在街頭，突然被幾名清廷特務強行拖入馬車，打暈過去！</div>
+                <div id="rpg-actions">
+                    <button class="rpg-btn" onclick="rpgStep(1)">[ 醒來 ]</button>
+                </div>
+            </div>
+            <button id="btn-next-3" class="btn" style="display:none; margin-top: 20px;" onclick="changeScene(4)">繼續推進歷史</button>
+        </div>
+
+        <!-- Scene 4: 鐵路國有 -->
+        <div id="scene-4" class="scene">
+            <h2 class="scene-title">第四章：「鐵路國有」風暴</h2>
+            <p>1911年，清政府突然宣佈實行「鐵路國有」政策。這引發了巨大的民怨。</p>
+            
+            <div id="rail-1" style="background:#f9f9f9; padding:15px; margin-bottom:15px;">
+                <p><b>第一部分：</b>川漢鐵路是人民「集資」興建的。清廷強行沒收，且不退還股本，這直接導致了什麼？</p>
+                <button class="btn" onclick="solveRailway(1, this, false)">改善交通管理</button>
+                <button class="btn" onclick="solveRailway(1, this, true)">嚴重損害人民利益</button>
+            </div>
+
+            <div id="rail-2" style="background:#f9f9f9; padding:15px; display:none;">
+                <p><b>第二部分：</b>清廷沒收鐵路後，將「路權」轉移並抵押給外國列強以換取借款。這意味著什麼？</p>
+                <button class="btn" onclick="solveRailway(2, this, true)">出賣國權</button>
+                <button class="btn" onclick="solveRailway(2, this, false)">吸引外資</button>
+            </div>
+            
+            <p id="rail-feedback" style="color: green; font-weight: bold; display: none;">人民利益受損加上國權被賣，四川爆發了轟轟烈烈的「保路運動」！</p>
+            <button id="btn-next-4" class="btn" style="display:none;" onclick="changeScene(5)">推演武昌起義</button>
+        </div>
+
+        <!-- Scene 5: 因果鏈 -->
+        <div id="scene-5" class="scene">
+            <h2 class="scene-title">第五章：武昌起義因果鏈</h2>
+            <p>請依正確的時間順序，點擊重組引發清朝滅亡的因果關係：</p>
+            <div class="chain-pool">
+                <div class="chain-block" onclick="addChain(4, '武漢地區兵力被抽調，防務空虛', this)">武漢地區兵力被抽調，防務空虛</div>
+                <div class="chain-block" onclick="addChain(1, '清政府宣佈「鐵路國有」，出賣國權', this)">清政府宣佈「鐵路國有」，出賣國權</div>
+                <div class="chain-block" onclick="addChain(5, '革命黨人看準時機，發動「武昌起義」', this)">革命黨人看準時機，發動「武昌起義」</div>
+                <div class="chain-block" onclick="addChain(2, '四川人民憤怒，爆發「保路運動」', this)">四川人民憤怒，爆發「保路運動」</div>
+                <div class="chain-block" onclick="addChain(3, '清室急調湖北新軍入四川鎮壓', this)">清室急調湖北新軍入四川鎮壓</div>
+            </div>
+            <div class="chain-result" id="chain-result"></div>
+            <button class="btn" onclick="resetChain()" style="margin-top:10px;">重置順序</button>
+            <button id="btn-next-5" class="btn" style="display:none;" onclick="goToQuiz()">進入總結小測</button>
+        </div>
+
+        <!-- Scene 6: 小測 -->
+        <div id="scene-6" class="scene">
+            <h2 class="scene-title">總結小測</h2>
+            <div id="quiz-container"></div>
+            <button id="submit-btn" class="btn" onclick="submitQuiz()">交卷計算成績</button>
+            <div id="result-box" style="display:none; margin-top:20px; padding:20px; background:#e8f5e9; border:2px solid green;">
+                <h3 id="res-score"></h3>
+                <p id="res-msg"></p>
+            </div>
+        </div>
+
+    </main>
+
+<script>
+    function changeScene(id) {
+        document.querySelectorAll('.scene').forEach(el => el.classList.remove('active'));
+        document.getElementById('scene-' + id).classList.add('active');
+    }
+    function goToQuiz() {
+        changeScene(6);
+        if(document.getElementById('quiz-container').innerHTML === "") renderQuiz();
+    }
+
+    // Scene 1
+    let b1 = false, b2 = false;
+    function readBook(id) {
+        const fb = document.getElementById('book-feedback');
+        if(id === 1) { b1 = true; document.getElementById('book1').classList.add('read'); fb.innerHTML = "閱讀《法國大革命》，你了解到爭取自由平等的西方革命精神。"; }
+        if(id === 2) { b2 = true; document.getElementById('book2').classList.add('read'); fb.innerHTML = "閱讀《西方政治制度》，你了解到共和體制（人民作主）與君主制（專制）的不同。"; }
+        if(b1 && b2) document.getElementById('btn-next-1').style.display = 'inline-block';
+    }
+
+    // Scene 2 (修正十六字訣)
+    function checkSlogan(correct, btn) {
+        const fb = document.getElementById('slogan-feedback');
+        if(correct) {
+            btn.style.background = '#e8f5e9'; btn.style.border = '2px solid green';
+            fb.style.color = 'green';
+            fb.innerHTML = "正確！這是孫中山向李鴻章提出的富國強兵之道。可惜李鴻章拒絕接見，孫中山自此放棄和平改良，走上革命之路。";
+            document.getElementById('btn-next-2').style.display = 'inline-block';
+            document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+        } else {
+            fb.style.color = 'red';
+            fb.innerHTML = "這不是上書李鴻章的十六字訣，請重新選擇。";
+        }
+    }
+
+    // Scene 3
+    function rpgStep(step) {
+        const text = document.getElementById('rpg-text');
+        const actions = document.getElementById('rpg-actions');
+        if(step===1) {
+            text.innerHTML = "你在昏暗的房間醒來，雙手被綁，頭罩布袋！";
+            actions.innerHTML = `<button class="rpg-btn" onclick="rpgStep(2)">[ 掙扎解開繩索，除下頭套 ]</button>`;
+        } else if(step===2) {
+            text.innerHTML = "你四處張望，發現這裡是清朝駐英公使館！即將被押回大清處死！";
+            actions.innerHTML = `<button class="rpg-btn" onclick="rpgStep(3)">[ 寫下求救內容，交給打掃的英國工人 ]</button>`;
+        } else if(step===3) {
+            text.innerHTML = "工人將信交給了你的老師康德黎。康德黎聯絡英國政府與報館，清廷迫於壓力將你釋放！你經歷了蒙難，深刻感受到革命的危險。";
+            actions.innerHTML = `<b>蒙難結束，死裡逃生！</b>`;
+            document.getElementById('btn-next-3').style.display = 'inline-block';
+        }
+    }
+
+    // Scene 4
+    let r1 = false;
+    function solveRailway(part, btn, correct) {
+        if(correct) {
+            btn.style.background = "green"; btn.style.color = "white";
+            if(part===1) { r1 = true; document.getElementById('rail-2').style.display = 'block'; }
+            if(part===2 && r1) {
+                document.getElementById('rail-feedback').style.display = 'block';
+                document.getElementById('btn-next-4').style.display = 'inline-block';
+            }
+            btn.parentNode.querySelectorAll('button').forEach(b=>b.disabled=true);
+        } else {
+            btn.style.background = "red"; btn.style.color = "white";
+            setTimeout(()=> { btn.style.background = "#8b0000"; }, 1000);
+        }
+    }
+
+    // Scene 5
+    let chain = [];
+    const ansChain = [1, 2, 3, 4, 5];
+    function addChain(id, text, el) {
+        if(chain.includes(id)) return;
+        chain.push(id);
+        el.style.opacity = '0.5'; el.style.pointerEvents = 'none';
+        
+        let res = document.getElementById('chain-result');
+        if(chain.length > 1) res.innerHTML += `<div>⬇️</div>`;
+        res.innerHTML += `<div class="chain-step">${text}</div>`;
+        
+        if(chain.length === 5) {
+            if(JSON.stringify(chain) === JSON.stringify(ansChain)) {
+                document.getElementById('btn-next-5').style.display = 'inline-block';
+            } else {
+                alert("順序錯誤！請回想：政策發佈 -> 人民反抗 -> 調兵鎮壓 -> 防務空虛 -> 發動起義。");
+                resetChain();
+            }
+        }
+    }
+    function resetChain() {
+        chain = [];
+        document.getElementById('chain-result').innerHTML = "";
+        document.querySelectorAll('.chain-block').forEach(el => { el.style.opacity='1'; el.style.pointerEvents='auto'; });
+        document.getElementById('btn-next-5').style.display = 'none';
+    }
+
+    // Scene 6
+    const quizData = [
+        { q: "1. 孫中山閱讀《法國大革命》後，了解到西方___的精神。", o: ["革命", "專制", "妥協", "封建"], a: 0 },
+        { q: "2. 透過研究西方政治制度，他明白了___與君主制之不同。", o: ["奴隸制", "共和體制", "獨裁制", "貴族制"], a: 1 },
+        { q: "3. 孫中山曾上書李鴻章提出改革方向，其《十六字訣》為：「人能盡其才，地能盡其利，物能盡其用，___」。", o: ["貨能暢其流", "創立民國", "平均地權", "振興中華"], a: 0 },
+        { q: "4. 上書失敗後，孫中山轉向革命。後來同盟會成立，其革命綱領包含「驅除韃虜，恢復中華，___，平均地權」。", o: ["扶清滅洋", "君主立憲", "創立民國", "實業救國"], a: 2 },
+        { q: "5. 1896年，孫中山在___街頭被清廷特務秘密綁架，史稱蒙難記。", o: ["紐約", "東京", "倫敦", "巴黎"], a: 2 },
+        { q: "6. 清政府宣佈「鐵路國有」，強收人民集資的鐵路，嚴重損害___。", o: ["人民利益", "皇帝利益", "列強利益", "官員利益"], a: 0 },
+        { q: "7. 清廷將路權抵押給列強，被視為___的行為，引發保路運動。", o: ["發展經濟", "出賣國權", "外交勝利", "吸引外資"], a: 1 },
+        { q: "8. 為了鎮壓四川保路運動，清廷調動湖北新軍，導致___防務空虛。", o: ["廣東", "北京", "武漢", "南京"], a: 2 },
+        { q: "9. 革命黨人看準時機，於1911年發動___，最終導致清朝滅亡。", o: ["武昌起義", "黃花崗起義", "廣州起義", "金田起義"], a: 0 }
+    ];
+
+    function renderQuiz() {
+        const c = document.getElementById('quiz-container');
+        quizData.forEach((item, i) => {
+            let div = document.createElement('div');
+            div.className = 'quiz-item';
+            let parts = item.q.split("___");
+            let html = `<span>${parts[0]}</span> <select id="q-${i}"><option value="-1">--請選擇--</option>`;
+            item.o.forEach((opt, oi) => html += `<option value="${oi}">${opt}</option>`);
+            html += `</select> <span>${parts[1]||''}</span>`;
+            div.innerHTML = html;
+            c.appendChild(div);
+        });
+    }
+
+    function submitQuiz() {
+        let score = 0, all = true;
+        for(let i=0; i<quizData.length; i++) {
+            let sel = document.getElementById(`q-${i}`);
+            let val = parseInt(sel.value);
+            if(val === -1) { all = false; sel.style.border="2px solid red"; }
+            else {
+                sel.disabled = true;
+                if(val === quizData[i].a) { score++; sel.classList.add('correct'); }
+                else {
+                    sel.classList.add('wrong');
+                    let span = document.createElement('span');
+                    span.style.color = "red"; span.style.fontWeight="bold"; span.style.marginLeft="10px";
+                    span.innerText = `(正確答案：${quizData[i].o[quizData[i].a]})`;
+                    sel.parentNode.appendChild(span);
+                }
+            }
+        }
+        if(!all) { alert("請完成所有題目！"); return; }
+        document.getElementById('submit-btn').style.display = 'none';
+        document.getElementById('result-box').style.display = 'block';
+        document.getElementById('res-score').innerText = `得分：${score} / ${quizData.length}`;
+        document.getElementById('res-msg').innerText = score === quizData.length ? "滿分！你完全掌握了這段歷史！" : "繼續努力，你已經了解了革命的基本脈絡。";
+    }
+</script>
+</body>
+</html>
