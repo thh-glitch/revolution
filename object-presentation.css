@@ -1,0 +1,141 @@
+/* Shared handling, individual objects. Ink belongs to the paper; controls belong to the player. */
+#app.object-open{height:100svh;overflow:hidden}
+#app.object-open #content{position:fixed;inset:0;z-index:8;display:block;min-height:0;margin:0;cursor:default;background:transparent;backdrop-filter:none}
+.object-overlay{position:fixed;inset:0;display:grid;place-items:center;padding:24px;background:#211b1233;backdrop-filter:blur(2px)}
+.object-stage{width:min(760px,100%);display:flex;flex-direction:column;align-items:center;gap:15px;max-height:calc(100svh - 40px);animation:take-paper .3s ease-out both}
+#app .object-sheet{position:relative;inset:auto;transform:rotate(-.35deg);margin:0;width:100%;max-width:650px;min-height:0;max-height:none;display:block;padding:30px 40px;color:#343b34;background:#eadfc1;box-shadow:0 2px 2px #5a493a66,0 20px 60px #20160d77;border:0;overflow:visible;animation:none;text-align:left;flex-shrink:1}
+#app .object-sheet::before{pointer-events:none}
+#app .object-sheet .reader-inner{padding:0;overflow:visible;display:block}
+#app .object-sheet h2{font:400 30px/1.4 'Artifact Hand',serif;letter-spacing:.08em;margin:0 0 18px;outline:none;color:#333a32}
+#app .object-sheet p{font:20px/1.85 'Artifact Hand',serif;margin:10px 0;letter-spacing:.015em;max-width:none;text-shadow:none}
+#app .object-sheet .note,#app .object-sheet .principle-note,#app .object-sheet .small{font:13px/1.7 'Chiron Dialogue',sans-serif;color:#6a6555;margin:12px 0 0}
+.object-controls{width:min(650px,100%);display:flex;align-items:center;justify-content:space-between;gap:12px;color:#f4e8cd;text-shadow:0 1px 7px #000}
+.object-buttons{display:flex;gap:16px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+.object-provenance{font:10px/1.65 'Chiron Dialogue',sans-serif;color:#eee0c6;max-width:48%}
+.object-controls button{font:14px/1.6 'Chiron Dialogue',sans-serif;min-height:44px;padding:9px 0;color:#fff2d6;border:0;border-bottom:1px solid #d2bb8b66;background:none;white-space:normal;text-align:right}
+.object-inner-thought{font:18px/1.75 'Chiron Thought',serif;color:#fff3dd;text-shadow:0 1px 8px #000;width:min(650px,100%);margin:0}
+#app .object-sheet .choice{font:19px/1.8 'Artifact Hand',serif;color:#3d4a44;padding:10px 0;border-bottom:1px solid #677b6540;background:none;text-align:left;min-height:44px}
+.object-hint{font:11px/1.7 'Chiron Dialogue',sans-serif;color:#e6d8bb}
+/* Folded personal letters: warm ivory, a quiet fold and handwritten address. */
+#app .object-letter{background:linear-gradient(transparent 49%,#9b815526 49.6%,#fff5db77 50%,transparent 51%),repeating-linear-gradient(0deg,#91774e08 0 1px,transparent 1px 4px),linear-gradient(105deg,#e1d4ae,#f0e5c9 12%,#eee2c4 85%,#dccda8);padding:28px 44px 25px;max-width:600px;transform:rotate(-.65deg)}
+#app .object-letter::before{inset:12px;border:1px solid #8c785217}
+#app .object-letter h2{font-size:24px;text-align:center;margin:0 0 20px}
+.letter-address{font:16px 'Artifact Hand',serif;color:#64644e;margin-bottom:12px;letter-spacing:.14em}
+.letter-sign{font:19px/1.6 'Artifact Hand',serif;text-align:right;margin-top:18px;transform:rotate(-3deg);padding-right:12px}
+/* Press clippings: cool grey stock and ink-dense type; no invented newspaper attribution. */
+#app .object-news{max-width:740px;background:repeating-linear-gradient(0deg,#555b5108 0 1px,transparent 1px 3px),linear-gradient(110deg,#d6d4bf,#e3e1cd 30%,#dbd9c4);color:#30332e;transform:rotate(.35deg);padding:23px 34px 28px}
+#app .object-news::before{border:0}
+.news-mast{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:3px double #4b5144;border-bottom:1px solid #4b5144;padding:8px 0 10px;margin-bottom:20px}
+.news-mast>span{font:30px/1.2 'Chiron Thought',serif;letter-spacing:.22em}
+.news-mast small{font:11px/1.7 'Chiron Dialogue',sans-serif;max-width:48%;text-align:right}
+#app .object-news h2{font:400 32px/1.4 'Chiron Thought',serif;letter-spacing:.06em;margin-bottom:17px}
+#app .object-news .news-columns{column-count:2;column-gap:26px;column-rule:1px solid #4b514433}
+#app .object-news p{font:20px/1.85 'Chiron Thought',serif;margin:0;text-align:justify;letter-spacing:.03em}
+/* Loose drafts: fine red ruling, a pencilled margin note and underlined claim. */
+#app .object-manuscript{padding:27px 50px 40px 44px;max-width:610px;background:repeating-linear-gradient(0deg,transparent 0 33px,#a05b4a26 33px 34px),linear-gradient(95deg,#e2d4b5,#f0e4ca 15%,#ecdfc1);transform:rotate(-1deg)}
+.manuscript-folio{font:13px/1.7 'Artifact Hand',serif;color:#807052;border-bottom:1px solid #9c5c4c50;padding-bottom:9px;margin-bottom:18px}
+#app .object-manuscript h2{font-size:34px;letter-spacing:.2em;margin-bottom:20px}
+#app .object-manuscript .ink-underlined{display:table;font-size:25px;line-height:1.7;border-bottom:2px solid #5d665177;padding-bottom:2px;transform:rotate(-1deg)}
+.margin-pencil{display:block;font:16px/1.8 'Artifact Hand',serif;color:#7e715b;transform:rotate(-5deg);text-align:right;margin:15px 0 0}
+/* A torn-off rescue slip, much smaller than a formal letter. */
+#app .object-scrap{max-width:560px;background:linear-gradient(110deg,#dbd8c2,#f1edd8 45%,#e0dbc2);padding:28px 35px 32px;clip-path:polygon(0 1%,13% 0,28% 1%,47% 0,69% .8%,89% 0,100% 1%,99% 99%,83% 100%,64% 99%,40% 100%,18% 99%,0 100%);transform:rotate(-1.2deg)}
+.scrap-caption{display:block;font:13px/1.6 'Artifact Hand',serif;color:#7b785f;margin-bottom:15px}
+#app .object-scrap h2{font-size:25px}
+#app .object-scrap .choice{font-size:18px;line-height:1.7}
+/* Accounts: a practical ruled working notebook, not a bank receipt. */
+#app .object-accounts,#app .work-record{background:repeating-linear-gradient(0deg,transparent 0 35px,#73848733 35px 36px),linear-gradient(95deg,#b9c5b4 0 15px,#e5dfc4 16px,#ede7cd 24px,#e4dcc0);padding-left:40px}
+#app .object-accounts .fund-use{display:grid;grid-template-columns:85px 1fr;gap:20px;align-items:center;border-top:1px solid #72857644;padding:8px 0}
+#app .object-accounts .fund-use h3{font:23px 'Artifact Hand',serif;margin:0}
+#app .object-accounts .fund-use p{font-size:19px;margin:0}
+/* Books stay books: gutter, two page edges, printed text. */
+#app .object-book{padding:30px 38px 30px 52px;background:linear-gradient(90deg,#80745b66,#e3d5b2 16px,#f0e6ca 32px,#eee2c5 98%,#cfbd98);box-shadow:3px 3px #c4b697,5px 5px #dbcba6,0 22px 60px #23180e88}
+#app .object-book h2{font:29px/1.5 'Chiron Thought',serif}
+#app .object-book p{font:20px/1.9 'Chiron Thought',serif}
+/* Timetable has a tabular purpose and slightly stiffer school paper. */
+#app .object-schedule{max-width:610px;background:repeating-linear-gradient(90deg,#7d694807 0 1px,transparent 1px 4px),#e8dfc7;padding:30px 35px}
+#app .object-schedule h2{font-family:'Chiron Thought',serif;text-align:center}
+#app .object-schedule .study-timetable{font:20px 'Artifact Hand',serif;margin:0;border:1px solid #746c5755}
+#app .object-schedule .study-timetable caption{font:12px 'Chiron Dialogue',sans-serif}
+#app .object-schedule .study-timetable th,#app .object-schedule .study-timetable td{padding:14px;border:1px solid #746c5744;background:transparent}
+/* Working dispatches: clipped corner and a transmission routing line. */
+#app .object-dispatch{max-width:600px;padding:26px 34px;background:linear-gradient(135deg,transparent 17px,#dcd4b8 0) top left/100% 100%;clip-path:polygon(20px 0,100% 0,100% 100%,0 100%,0 20px);transform:rotate(.6deg)}
+.dispatch-routing{display:block;font:13px/1.7 'Chiron Dialogue',sans-serif;letter-spacing:.16em;border-bottom:1px dashed #77766188;margin-bottom:18px;padding-bottom:10px;color:#60644e}
+#app .object-dispatch h2{font:26px/1.5 'Chiron Thought',serif}
+#app .object-dispatch p{font-size:20px}
+/* Oaths and the journal each keep their own typographic silhouette. */
+#app .object-oath{background:repeating-linear-gradient(90deg,transparent 0 48px,#9e6a4e1c 48px 49px),linear-gradient(105deg,#d5c39b,#eee0b9 12%,#e4d2a8);max-width:580px;text-align:center;padding:35px}
+#app .object-oath h2{font:34px 'Artifact Hand',serif;letter-spacing:.2em}
+#app .object-oath .oath{font:27px/1.9 'Artifact Hand',serif;margin:24px 0}
+#app .object-oath .alliance-fact{font:14px/1.9 'Chiron Dialogue',sans-serif}
+#app .object-journal{width:min(390px,100%);min-height:360px;padding:30px 28px;background:linear-gradient(90deg,#b4a480 0 5px,#e2d6b3 7px,#eaddb9 20px,#dfd0ac);text-align:center;border:1px solid #70623e66;box-shadow:4px 4px #bdad88,0 20px 60px #23180e88}
+#app .object-journal::before{inset:14px;border:2px double #66624888}
+.journal-issue{font:15px 'Chiron Thought',serif;margin:8px 0 32px;letter-spacing:.15em}
+#app .object-journal h2{font:70px/1.5 'Chiron Thought',serif;letter-spacing:.2em;margin:0 0 26px}
+#app .object-journal .oath{font:22px/1.9 'Chiron Thought',serif}
+/* Physical map keeps all original regions, river path and input targets. */
+#app .object-map{max-width:650px;padding:25px 32px;background:linear-gradient(transparent 49%,#7c74422b 49.8%,#fff3cf66 50.2%,transparent 51%),repeating-linear-gradient(90deg,transparent 0 49px,#7f825118 49px 50px),#e4d7b4}
+#app .object-map .map-space{height:170px}
+#app .object-map .province-positions{height:170px}
+#app .object-map .region-note{font-size:18px;min-height:0;margin:12px 0 0}
+#app .object-map .small{font-size:12px}
+.object-gallery{border-top:1px solid #ae977555;padding-top:15px;margin-top:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:4px 15px}
+.object-gallery h3{grid-column:1/-1;font:16px 'Chiron Thought',serif;color:#d9c49e;margin:0 0 8px}
+.object-gallery button{font-size:13px;text-align:left;min-height:40px;padding:7px 0}
+@media(max-width:700px){
+ .object-overlay{padding:18px}.object-stage{gap:13px;max-height:calc(100svh - 36px)}
+ #app .object-sheet{padding:24px;max-width:100%;width:100%}
+ #app .object-sheet h2{font-size:26px;margin-bottom:16px}
+ #app .object-sheet p{font-size:18px;line-height:1.85;margin:8px 0}
+ #app .object-sheet .note,#app .object-sheet .principle-note{font-size:12px}
+ .object-inner-thought{font-size:16px;line-height:1.7}
+ .object-controls{gap:13px;align-items:flex-end}.object-controls button{font-size:13px}
+ .object-provenance{font-size:10px;max-width:44%}.object-buttons{gap:8px 16px}
+ .letter-address{font-size:13px}.letter-sign{font-size:17px;margin-top:14px}
+ #app .object-letter{padding:24px 27px}#app .object-letter h2{font-size:23px;margin-bottom:15px}
+ #app .object-news{padding:19px 23px}.news-mast{gap:12px;padding:7px 0;margin-bottom:16px}.news-mast>span{font-size:24px;letter-spacing:.12em}.news-mast small{font-size:10px}
+ #app .object-news h2{font-size:27px;line-height:1.45;margin-bottom:16px}
+ #app .object-news .news-columns{column-count:1;column-rule:0}
+ #app .object-news p{font-size:18px;line-height:1.85;margin:0}
+ #app .object-manuscript{padding:22px 27px}.manuscript-folio{font-size:12px;margin-bottom:16px}
+ #app .object-manuscript h2{font-size:30px;margin-bottom:18px}
+ #app .object-manuscript .ink-underlined{font-size:23px}.margin-pencil{font-size:15px}
+ #app .object-scrap{padding:24px 26px}#app .object-scrap h2{font-size:23px}#app .object-scrap .choice{font-size:17px;line-height:1.7}
+ #app .object-schedule{padding:25px 22px}.object-schedule .study-timetable{font-size:17px}
+ #app .object-schedule .study-timetable th,#app .object-schedule .study-timetable td{padding:11px}
+ #app .object-book{padding:25px 25px 25px 36px}#app .object-book .choice{font-size:17px}
+ #app .object-accounts .fund-use{grid-template-columns:60px 1fr;gap:10px}#app .object-accounts .fund-use h3{font-size:21px}#app .object-accounts .fund-use p{font-size:17px}
+ #app .object-oath .oath{font-size:24px;line-height:1.8;margin:22px 0}
+ #app .object-oath .alliance-fact{font-size:13px;line-height:1.8}
+ #app .object-journal{max-width:310px;min-height:350px;padding:25px}
+ #app .object-journal h2{font-size:65px}.journal-issue{font-size:13px;margin-bottom:25px}
+ #app .object-map{padding:23px 21px}#app .object-map .map-space{height:160px}#app .object-map .region-note{font-size:17px}
+ #app .object-map .province-positions{height:160px}#app .object-map .province-mark{font-size:20px}
+ #app .object-map .province-mark span{font-size:11px}.object-stage .evidence-tray{position:static;padding:0;gap:20px}
+}
+@media(max-height:660px) and (min-width:701px){
+ .object-overlay{padding:18px}.object-stage{width:min(1100px,100%);display:grid;grid-template-columns:minmax(350px,1.5fr) minmax(240px,1fr);gap:18px 28px;align-items:center}
+ #app .object-sheet{grid-row:1/3;max-width:none;padding:22px 30px}
+ #app .object-sheet p{font-size:18px;line-height:1.7}#app .object-sheet h2{font-size:27px;margin-bottom:14px}
+ .object-controls{flex-direction:column;align-items:flex-start;justify-content:flex-end}.object-provenance{max-width:100%}.object-inner-thought{font-size:17px}
+ .kind-journal{grid-template-columns:360px 1fr;max-width:850px}
+ #app .object-journal{min-height:340px;padding:25px}
+}
+@media(max-width:700px) and (max-height:730px){
+ .object-overlay{padding:13px}.object-stage{gap:9px;max-height:calc(100svh - 26px)}
+ #app .object-sheet{padding:19px 23px}#app .object-sheet p{font-size:17px;line-height:1.7}
+ #app .object-sheet h2{font-size:24px;margin-bottom:12px}
+ .object-inner-thought{font-size:15px;line-height:1.65}
+ .letter-address{margin-bottom:7px}.letter-sign{margin-top:9px}
+ #app .object-journal{min-height:310px}.journal-issue{margin-bottom:20px}
+ #app .object-map .province-positions,#app .object-map .map-space{height:140px}
+}
+@media(prefers-reduced-motion:reduce){.object-stage{animation:none}}
+#app.reduce .object-stage{animation:none}
+/* A sheet stays opaque while being lifted; fading paper would look like a glass card. */
+.object-stage{animation-name:object-lift;animation-duration:.2s}
+@keyframes object-lift{from{transform:translateY(7px) scale(.98)}to{transform:translateY(0) scale(1)}}
+@media(max-width:700px){
+ .kind-manuscript .object-controls{flex-wrap:wrap;gap:10px}
+ .kind-manuscript .object-buttons{flex:1 0 100%;order:-1;justify-content:space-between}
+ .kind-manuscript .object-provenance{max-width:100%}
+}

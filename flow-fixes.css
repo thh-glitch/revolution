@@ -1,0 +1,18 @@
+/* Found through the continuous run; retain world geometry and existing paper materials. */
+.object-stage>.evidence-tray{position:static;inset:auto;align-self:flex-start;padding:0;display:flex;gap:24px;flex-wrap:wrap}
+.object-stage>.evidence-tray button{color:#f1e0c1}
+.support-on-table{position:absolute;right:7%;top:55%;z-index:3;transform:rotate(3deg)}
+.support-object{width:174px;height:88px;padding:13px 18px 13px 30px;background:linear-gradient(90deg,#58604e 0 12px,#ddd1ad 13px,#eee2bd 22px,#e4d5b0);color:#3c4437;box-shadow:2px 3px #b9a683,0 10px 20px #241a1244;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between}
+.support-object span{font:23px 'Artifact Hand',serif;letter-spacing:.1em}
+.support-object small{font:12px 'Chiron Dialogue',sans-serif}
+.support-entry{display:grid;grid-template-columns:70px 1fr;gap:20px;align-items:center;min-height:76px}
+.support-entry>span{font:22px 'Artifact Hand',serif}
+.support-entry p{font:23px/1.8 'Artifact Hand',serif;margin:0}
+#app.is-republic .desk-tasks{top:43%}
+@media(max-width:650px),(max-aspect-ratio:4/3){
+ .support-on-table{top:-145px;right:22px}
+ .support-object{width:160px;height:85px}
+ .support-entry{grid-template-columns:52px 1fr;gap:12px;min-height:76px}
+ .support-entry>span,.support-entry p{font-size:20px}
+ #app.is-republic .desk-tasks{top:auto}
+}

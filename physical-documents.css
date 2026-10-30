@@ -1,0 +1,83 @@
+@font-face{font-family:'Artifact Hand';src:url('assets/fonts/Iansui/Iansui-Regular.ttf') format('truetype');font-display:swap}
+:root{--artifact-ink:#39382d;--artifact-paper:#e6d8b5;--artifact-rule:#9d5d4b40;--artifact-hand:'Artifact Hand','Chiron Thought',serif}
+/* Material, not a UI panel: folds, laid-paper fibres and ink. */
+#app.is-petition #content{background:rgba(28,23,17,.16);backdrop-filter:blur(1.5px)}
+.physical-reader{position:fixed;inset:0;display:grid;place-items:center;padding:20px;cursor:default}
+.artifact-stage{width:min(690px,100%);display:flex;flex-direction:column;align-items:center;gap:19px;animation:take-paper .35s ease-out both}
+#app .petition-leaf.reader{position:relative;inset:auto;transform:rotate(-.7deg);width:min(590px,100%);height:min(480px,65svh);min-height:260px;max-height:none;margin:0;padding:39px 40px 32px;color:var(--artifact-ink);background:radial-gradient(ellipse at 9% 95%,#b89a5d24,transparent 48%),repeating-linear-gradient(0deg,#7d694809 0 1px,transparent 1px 4px),linear-gradient(90deg,#d8c89f,#ecdfbf 9%,#eee2c4 48%,#e4d6b2 51%,#ecdfbd 93%,#d7c69f);box-shadow:0 2px 2px #392c1c66,0 24px 65px #1e140c88;clip-path:polygon(0 .5%,23% 0,49% .5%,74% 0,100% .4%,99.6% 50%,100% 99.6%,76% 100%,50% 99.6%,23% 100%,.2% 99.5%);overflow:hidden;display:block}
+#app .petition-leaf.reader::before{inset:21px 25px;border:1px solid #95664b33;background:repeating-linear-gradient(to left,transparent 0 calc(16.66% - 1px),var(--artifact-rule) calc(16.66% - 1px) 16.66%);z-index:0}
+.petition-vertical{position:relative;z-index:1;display:flex;flex-direction:row-reverse;justify-content:space-between;height:100%;gap:15px}
+#app .petition-leaf h2{font:31px/1.4 var(--artifact-hand);font-weight:400;writing-mode:vertical-rl;letter-spacing:.2em;margin:0;padding:0 0 0 10px;outline:none}
+.petition-lines{display:flex;flex-direction:row-reverse;justify-content:space-around;flex:1;padding-top:35px;gap:10px}
+#app .petition-leaf p{font:29px/1.5 var(--artifact-hand);writing-mode:vertical-rl;letter-spacing:.18em;margin:0}
+.petition-lines p:nth-child(2){transform:rotate(.8deg) translateY(9px)}
+.petition-lines p:nth-child(3){transform:rotate(-.6deg) translateY(3px)}
+#app .petition-leaf .petition-sign{align-self:flex-end;font-size:22px;letter-spacing:.25em;padding-bottom:15px}
+.paper-fold{position:absolute;inset:0;pointer-events:none;background:linear-gradient(transparent 48.8%,#917b4a15 49.6%,#fff7da55 50.1%,transparent 51.1%),linear-gradient(90deg,transparent 49%,#8b734c20 49.8%,#fff8dc55 50.1%,transparent 51%)}
+.artifact-under{width:min(650px,100%);color:#fff5df;text-shadow:0 1px 9px #000}
+.artifact-thought{font:19px/1.85 'Chiron Thought',serif;text-align:center;margin:0 0 9px}
+.artifact-footer{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.artifact-footer>span{font:11px/1.6 'Chiron Dialogue',sans-serif;color:#e0d2b9}
+.artifact-action{font:15px/1.6 'Chiron Dialogue',sans-serif;white-space:nowrap;min-height:44px;padding:9px 0;color:#fff3d8;border:0;border-bottom:1px solid #d7bd8866;background:none}
+#artifact{border:0;max-width:none;max-height:none;width:100vw;height:100svh;margin:0;padding:20px;inset:0;background:transparent;color:var(--artifact-ink);overflow:hidden}
+#artifact[open]{display:grid;place-items:center}
+#artifact::backdrop{background:#1c170e55;backdrop-filter:blur(2px)}
+.ledger-stage{width:min(670px,100%);gap:16px}
+.ledger-leaf{position:relative;isolation:isolate;width:min(610px,100%);padding:27px 39px 23px 60px;background:radial-gradient(ellipse at top right,#9c834921,transparent 40%),repeating-linear-gradient(0deg,#77603908 0 1px,transparent 1px 4px),linear-gradient(95deg,#d4c398,#ede0bd 7%,#eee3c6 60%,#e3d3ad);box-shadow:2px 3px 0 #c6b58b,4px 5px 0 #b7a17b,0 24px 65px #21180e88;transform:rotate(.6deg);font-family:var(--artifact-hand);color:#353e3c}
+.ledger-leaf::before{content:'';position:absolute;z-index:-1;top:99px;left:43px;right:28px;bottom:31px;background:repeating-linear-gradient(transparent 0 37px,#7b8e9450 37px 38px);pointer-events:none}
+.ledger-binding{position:absolute;top:0;bottom:0;left:0;width:21px;background:linear-gradient(90deg,#323d3b,#53615a 70%,#303c37);box-shadow:2px 0 5px #302a1866}
+.ledger-binding::after{content:'';position:absolute;left:9px;top:29px;bottom:29px;border-left:2px dashed #c9bea0}
+.ledger-leaf header{position:relative;border-bottom:1px solid #7b8e9450;margin-bottom:0;padding-bottom:14px}
+.ledger-date{font-size:15px;letter-spacing:.12em;margin:0 0 5px;color:#5f6559}
+.ledger-leaf h2{font:30px/1.4 var(--artifact-hand);letter-spacing:.14em;margin:0}
+.ledger-page{position:absolute;right:0;top:25px;font-size:18px}
+.ledger-columns{display:grid;grid-template-columns:1fr 2fr 25px;gap:15px;align-items:center;height:38px;font-size:17px;color:#626758}
+.ledger-entry{display:grid;grid-template-columns:1fr 2fr 25px;gap:15px;align-items:center;min-height:76px}
+.ledger-entry>span:first-child{font-size:23px;transform:rotate(-2deg)}
+.ledger-entry p{font-size:23px;line-height:1.65;margin:0;transform:rotate(-.5deg)}
+.ledger-entry small{font-size:16px;line-height:1.6;color:#586251;white-space:nowrap}
+.ink-check{font-size:30px;color:#655344;transform:rotate(-13deg)}
+.ledger-entry:nth-of-type(4) .ink-check{transform:rotate(8deg)}
+.ledger-margin{font-size:19px;line-height:1.7;transform:rotate(-2deg);margin:14px 0 9px 20px;color:#4c574e}
+.ledger-memo{font-size:16px;line-height:1.7;color:#66614d;border:0}
+.ledger-on-table{position:absolute;top:21%;right:9%;transform:rotate(5deg)}
+.ledger-object{width:230px;height:240px;padding:25px 24px 20px 38px;text-align:left;color:#343f3b;background:linear-gradient(90deg,#44514b 0 14px,#d3c298 15px,#ecdfbd 21px,#e4d4ac);box-shadow:3px 4px 0 #b09c77,0 16px 30px #20180f66;display:flex;flex-direction:column;justify-content:space-between;font-family:var(--artifact-hand)}
+.ledger-label{font-size:25px;letter-spacing:.12em;line-height:1.7}
+.ledger-glimpse{font-size:17px;line-height:1.9;transform:rotate(-2deg)}
+.ledger-prompt{font:12px 'Chiron Dialogue',sans-serif;letter-spacing:.1em;color:#62583e}
+@keyframes take-paper{from{opacity:0;transform:translateY(14px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:700px){
+ .physical-reader{padding:18px}
+ .artifact-stage{gap:15px}
+ #app .petition-leaf.reader{height:min(430px,59svh);padding:32px 22px 26px}
+ #app .petition-leaf.reader::before{inset:17px 14px}
+ #app .petition-leaf h2{font-size:25px;padding-left:0;letter-spacing:.14em}
+ #app .petition-leaf p{font-size:24px;letter-spacing:.17em}
+ .petition-vertical{gap:8px}.petition-lines{gap:7px;padding-top:38px}
+ #app .petition-leaf .petition-sign{font-size:19px}
+ .artifact-thought{font-size:17px;line-height:1.7;text-align:left}
+ .artifact-footer{gap:12px}.artifact-footer>span{font-size:10px;max-width:190px}
+ .artifact-action{font-size:14px}
+ #artifact{padding:18px}
+ .ledger-leaf{padding:20px 18px 22px 40px}
+ .ledger-binding{width:16px}.ledger-binding::after{left:6px}
+ .ledger-leaf h2{font-size:26px}.ledger-date{font-size:13px}
+ .ledger-leaf::before{left:29px;right:11px;top:86px}
+ .ledger-columns,.ledger-entry{grid-template-columns:76px 1fr 18px;gap:8px}
+ .ledger-entry>span:first-child,.ledger-entry p{font-size:20px}
+ .ledger-entry small{font-size:14px}.ink-check{font-size:24px}
+ .ledger-margin{font-size:17px;margin-left:0}.ledger-memo{font-size:14px}
+ .ledger-on-table{position:relative;inset:auto;margin:-35px 28px 26px;align-self:flex-end}
+ .ledger-object{width:205px;height:180px;padding:18px 20px 14px 30px}.ledger-label{font-size:22px}.ledger-glimpse{font-size:15px}
+}
+@media(max-height:620px) and (min-width:701px){
+ .artifact-stage{flex-direction:row;gap:28px;width:min(850px,100%)}
+ #app .petition-leaf.reader{height:86svh;width:450px;flex-shrink:0;padding:30px}
+ .artifact-under{width:auto}.artifact-footer{flex-direction:column;align-items:flex-start}
+ .ledger-stage{width:min(850px,100%)}.ledger-leaf{flex-shrink:0;width:540px;padding-top:18px;padding-bottom:16px}
+ .ledger-entry{min-height:66px}.ledger-margin{margin-top:8px;margin-bottom:5px}
+}
+@media(prefers-reduced-motion:reduce){.artifact-stage{animation:none}}
+#app.reduce .artifact-stage{animation:none}
+
+.ledger-pledge{display:block;margin:12px auto 0;font:13px 'Chiron Dialogue',sans-serif;color:#f2e0bf;text-shadow:0 2px 8px #000;padding:9px;min-height:44px}

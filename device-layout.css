@@ -1,0 +1,109 @@
+/* Responsive finishing layer. World assets and document materials are retained. */
+@media(max-width:650px){
+ #app:not(.object-open) #content{min-height:0}
+ #app:not(.object-open) #modeBar{position:absolute;top:var(--mode-top,48svh);right:16px;left:auto;z-index:6;padding:2px 7px;gap:12px;background:#17171333;font-size:10px;text-shadow:0 1px 5px #000}
+ #app:not(.object-open) #modeBar button{min-height:28px;font-size:10px;padding:2px 0}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue{padding:18px 24px 20px}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue>#focusText{font-size:20px;line-height:1.7;margin:10px 0}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue.inner-voice>#focusText{font-size:20px;line-height:1.75}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue>.aside{font-size:12px;line-height:1.6;margin:6px 0 3px}
+ #app.film-scene .cinema-dialogue .scene-reply{font-size:17px;line-height:1.65}
+ #app.film-scene .cinema-dialogue .encounter-actions{margin-top:9px;gap:6px 14px}
+ #app.film-scene .cinema-dialogue .concern-replies{flex-direction:row;flex-wrap:wrap;gap:0 18px}
+ #app.film-scene .cinema-dialogue .concern-addressed{font-size:13px;line-height:1.5;padding:9px 0;min-height:44px}
+ #app.film-scene .cinema-dialogue .concern-addressed::before,#app.film-scene .cinema-dialogue .concern-addressed::after{display:none}
+ #app.film-scene .cinema-dialogue .caption-actions{margin-top:8px}
+ #app .time-card,#app .ending{min-height:0;padding:22px 24px}
+ #app .time-card h1{font-size:48px;margin:10px 0}
+ #app .time-card p{font-size:18px;line-height:1.75;margin:10px 0}
+ #app .ending h1{font-size:29px;line-height:1.5;margin:15px 0}
+ #app .cover{padding:24px}
+ #app .cover h1{font-size:42px;margin:14px 0}
+ #app .cover p{font-size:15px;line-height:1.8;margin:10px 0}
+ #app .cover .cover-actions{margin:15px 0;gap:10px 20px}
+ #app .cover [data-action^="replay"]:not([data-action="replay"]),#app .cover [data-action="reviewNew"]{display:none}
+ #app .reflection-view{padding:18px 24px 22px}
+ #app.film-scene .reflection-text>p{font-size:19px;line-height:1.75;margin:10px 0}
+ #app .closing-dates{margin:13px 0}
+ #app .closing-dates li{font:13px/1.6 'Chiron Dialogue',sans-serif;padding:8px 0;display:flex;gap:10px;align-items:baseline}
+ #app .closing-dates time{display:inline-block;flex:0 0 112px;min-width:0;margin:0;font-size:12px}
+ #app.is-drafts .manuscripts{margin-top:-36px!important}
+ #app.is-drafts .manuscript{min-height:112px;padding:13px 10px}
+ #app.is-drafts .manuscript .sheet-heading{font-size:24px;margin-bottom:10px}
+ #app.is-drafts .manuscript span:not(.sheet-heading){font-size:11px}
+ /* Existing image min-height stays intact; remove only forced content blank space. */
+}
+/* iPad landscape gets the cinematic wide composition, not the phone stack. */
+@media(min-width:900px) and (orientation:landscape){
+ html,body{height:100svh;overflow:hidden}
+ #app:not(.object-open){height:100svh;min-height:100svh;overflow:hidden;display:block}
+ #app:not(.object-open) #world{position:absolute;inset:0;width:100%;height:100%;min-height:0;flex:none;z-index:-2}
+ #app:not(.object-open) #composition{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;transform:none}
+ #app:not(.object-open) #scene{object-fit:cover;object-position:center top}
+ #app:not(.object-open) #content{position:absolute;inset:0;min-height:0;margin:0;flex:none}
+ #app #modeBar{position:absolute;top:86px;right:30px;left:auto;padding:4px 10px;background:#19161299;font-size:10px;z-index:6}
+ #app #modeBar button{min-height:30px;font-size:10px}
+ #app .hud{padding:24px 30px}
+ #app .chapter{font-size:11px;letter-spacing:2px}
+ #app #location{font-size:16px;letter-spacing:2px;margin-top:9px}
+ #app.film-scene .cinema-dialogue{position:absolute;bottom:0;left:0;right:0;padding:56px 7vw 24px;background:linear-gradient(0deg,#101110f2,#101110bb 55%,transparent)}
+ #app.film-scene .cinema-dialogue>#focusText{font-size:23px;line-height:1.8;max-width:37em}
+ #app.film-scene .cinema-dialogue.inner-voice>#focusText{font-size:23px;line-height:1.85;max-width:35em}
+ #app.film-scene .cinema-dialogue>.speaker{font-size:15px}
+ #app.film-scene .cinema-dialogue .scene-reply{font-size:18px;line-height:1.7}
+ #app.film-scene .cinema-dialogue .concern-replies{flex-direction:row;gap:8px 24px}
+ #app.film-scene .cinema-dialogue .cinema-choice{font-size:17px;min-height:46px}
+ #app.film-scene .cinema-dialogue .concern-addressed{font-size:13px;padding-left:0}
+ #app.film-scene .cinema-dialogue .concern-addressed::before{display:none}
+ #app .scene-people{position:absolute;top:44%;left:7%;right:7%;padding:0;display:flex;justify-content:space-between;gap:24px;flex-wrap:nowrap}
+ #app .scene-people button{flex:none;min-width:0;font-size:15px;padding:10px;background:linear-gradient(transparent,#20191066)}
+ #app .room-spots{display:block;padding:0}
+ #app .room-spots button{position:absolute;top:47%;background:#201c1833;font-size:15px}
+ #app .room-door{right:14%}#app .room-window{left:17%}
+ #app .action-traces:not(.inline){position:absolute;top:17%;left:5%;margin:0}
+ #app .evidence-tray{position:absolute;top:120px;left:30px;padding:0}
+ #app .object-stage>.evidence-tray{position:static;inset:auto}
+ #app .desk-tasks{position:absolute;left:7%;right:7%;top:43%;padding:0;gap:28px}
+ #app .desk-tasks button{font-size:14px;padding:10px 14px;background:#e9dcc177;color:#382d1d}
+ #app .manuscripts{position:absolute;bottom:32%;left:50%;inset:auto auto 32% 50%;transform:translateX(-50%);margin:0!important;padding:0;gap:20px}
+ #app .manuscript{flex:none;width:165px;min-height:160px;padding:22px 16px}
+ #app .manuscript .sheet-heading{font-size:28px}
+ #app .ledger-on-table{position:absolute;top:23%;right:7%;left:auto;margin:0;transform:rotate(4deg)}
+ #app .ledger-object{width:205px;height:180px;padding:20px 22px 18px 33px}
+ #app .ledger-label{font-size:23px}#app .ledger-glimpse{font-size:16px}
+ #app .support-on-table{position:absolute;top:56%;right:7%;margin:0}
+ #app .reflection-view{position:absolute;inset:0;display:flex;padding:110px 40px 25px;background:#171410b8;align-items:center;justify-content:center}
+ #app .reflection-text{max-width:810px}
+ #app.film-scene .reflection-text>p{font-size:22px;line-height:1.85}
+ #app .closing-dates time{display:inline-block;min-width:180px;margin:0}
+ #app .ending,#app .time-card{position:absolute;inset:0;min-height:0;padding:115px 7vw 30px;background:linear-gradient(transparent 50%,#171410cc)}
+ #app .ending h1{font-size:44px}
+ #app .time-card h1{font-size:65px}
+ #app .time-card p{max-width:700px}
+ #app .explore-note{position:absolute;bottom:25px;left:0;margin:0;padding:0 7vw;width:100%;text-align:left;font-size:15px}
+ #app .teacher-action{position:absolute;right:7%;bottom:10%;margin:0}
+ #app .cover{position:absolute;inset:17% auto auto 8%;max-width:560px;padding:0}
+ #app .cover [data-action^="replay"]:not([data-action="replay"]),#app .cover [data-action="reviewNew"]{display:none}
+}
+@media(min-width:900px) and (orientation:landscape){
+ #app.film-scene:not(.is-teacher) .cinema-dialogue,#app.film-scene.is-teacher .cinema-dialogue{position:absolute;top:auto;bottom:0;left:0;right:0;padding:56px 7vw 24px;background:linear-gradient(0deg,#101110f2,#101110bb 55%,transparent)}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue>#focusText,#app.film-scene.is-teacher .cinema-dialogue>#focusText{font-size:23px;line-height:1.8;max-width:37em}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue.inner-voice>#focusText{font-size:23px;line-height:1.85;max-width:35em}
+ #app.film-scene.is-teacher .cinema-context{position:absolute;right:3vw;bottom:28px;writing-mode:vertical-rl;font-size:11px;letter-spacing:.14em}
+ #app.film-scene.is-teacher .cinema-dialogue .encounter-actions{margin-top:15px}
+}
+@media(max-width:650px){
+ #app.is-journeyEnd .ending .cover-actions{margin:10px 0;gap:8px 20px}
+ #app.is-journeyEnd .ending .small{margin:6px 0;font-size:11px;line-height:1.6}
+}
+@media(min-width:900px) and (orientation:landscape){
+ #app.film-scene.is-founded .ledger-on-table{position:absolute;top:44%;right:7%;left:auto;margin:0;transform:rotate(3deg)}
+ #app.film-scene.is-founded .ledger-object{width:170px;height:120px;padding:12px 15px 11px 27px}
+ #app.film-scene.is-founded .ledger-label{font-size:19px;line-height:1.4}
+ #app.film-scene.is-founded .ledger-glimpse{font-size:12px;line-height:1.6}
+}
+/* At 4:3, keep all three listeners in the frame instead of cropping the outer faces. */
+@media(min-width:900px) and (orientation:landscape) and (max-aspect-ratio:31/20){
+ #app:is(.is-gather,.is-founded,.is-speech,.is-doubt,.is-support):not(.object-open) #scene{object-fit:contain;object-position:center top}
+ #app:is(.is-gather,.is-founded,.is-speech,.is-doubt,.is-support) #modeBar{top:calc(56.25vw - 30px);right:24px;background:#17171333}
+}

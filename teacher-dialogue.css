@@ -1,0 +1,40 @@
+/* Teacher-only art study: no other scene typography is changed. */
+@font-face{font-family:'Chiron Dialogue';src:url('assets/fonts/ChironHeiHK/ChironHeiHK-R.otf') format('opentype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Chiron Thought';src:url('assets/fonts/ChironSungHK/ChironSungHK-R.otf') format('opentype');font-style:normal;font-weight:400;font-display:swap}
+#app.is-teacher{--dialogue-font:'Chiron Dialogue','PingFang TC',sans-serif;--thought-font:'Chiron Thought','Songti TC',serif;--dialogue-gold:#d9bd85;--dialogue-white:#fff8eb}
+.is-teacher .cinema-dialogue{padding:74px 9vw 30px;background:linear-gradient(0deg,rgba(16,17,16,.95),rgba(16,17,16,.76) 56%,transparent);border:0;box-shadow:none;animation:dialogue-arrive .38s ease-out both}
+.is-teacher .cinema-context{position:absolute;right:5vw;bottom:34px;font:12px/1.6 var(--dialogue-font);letter-spacing:.2em;color:#b5ad9c;writing-mode:vertical-rl}
+.is-teacher .cinema-dialogue .speaker{display:flex;align-items:center;gap:14px;font:16px/1.5 var(--dialogue-font);letter-spacing:.2em;color:var(--dialogue-gold)}
+.is-teacher .cinema-dialogue .speaker::before{content:'';width:30px;height:1px;background:var(--dialogue-gold);flex:none}
+.is-teacher .cinema-dialogue #focusText{font:400 24px/1.85 var(--dialogue-font);letter-spacing:.045em;color:var(--dialogue-white);max-width:36em;margin:14px 0 12px;text-wrap:pretty;text-shadow:0 2px 12px #0006;outline:none}
+.is-teacher .cinema-dialogue .aside{font:14px/1.8 var(--thought-font);color:#d3c7b3;margin:12px 0 3px;letter-spacing:.06em}
+.is-teacher .cinema-dialogue .encounter-actions{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin:19px 0 0;padding-left:4px}
+.is-teacher .cinema-dialogue .immersive-choice{position:relative;width:auto;max-width:100%;padding:10px 24px 10px 25px;border:0;font:18px/1.7 var(--dialogue-font);letter-spacing:.04em;color:#e4d7bf;min-height:48px;transition:color .2s,transform .2s}
+.is-teacher .cinema-dialogue .immersive-choice::before{content:'›';position:absolute;left:2px;color:var(--dialogue-gold);opacity:.55}
+.is-teacher .cinema-dialogue .immersive-choice::after{content:'';position:absolute;bottom:7px;left:25px;right:23px;height:1px;background:linear-gradient(90deg,#d9bd8599,transparent);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+.is-teacher .cinema-dialogue .immersive-choice:hover,.is-teacher .cinema-dialogue .immersive-choice:focus-visible{opacity:1;color:#fff8e8;transform:translateX(4px)}
+.is-teacher .cinema-dialogue .immersive-choice:hover::after,.is-teacher .cinema-dialogue .immersive-choice:focus-visible::after{transform:scaleX(1)}
+.is-teacher .cinema-dialogue .tap-cue{font:11px/1.7 var(--dialogue-font);letter-spacing:.14em;color:#beb4a2;margin-top:18px}
+.is-teacher .cinema-dialogue .tap-cue span{color:var(--dialogue-gold);font-size:13px;margin-right:9px}
+.is-teacher .cinema-dialogue.inner-voice #focusText{font-family:var(--thought-font);max-width:28em;line-height:1.95;color:#e8dcc7}
+.is-teacher .cinema-dialogue.inner-voice .speaker{font-family:var(--thought-font);font-size:12px;color:#bcb09c}
+.is-teacher .cinema-dialogue.inner-voice .speaker::before{width:16px;background:#bcb09c}
+@keyframes dialogue-arrive{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){
+ #app.is-teacher{display:block;height:auto;min-height:100svh;overflow:visible;background:#101110}
+ #app.is-teacher #world{height:53svh;min-height:290px}
+ #app.is-teacher #composition{top:62px;height:calc(100% - 62px);width:100%;left:0}
+ #app.is-teacher #scene{object-position:52% top}
+ #app.is-teacher #content{min-height:0;margin-top:-36px;position:relative}
+ #app.is-teacher .cinema-dialogue{position:relative;padding:38px 26px 26px;background:linear-gradient(transparent,#101110 42px);animation-duration:.25s}
+ #app.is-teacher .cinema-context{position:static;writing-mode:horizontal-tb;font-size:10px;letter-spacing:.18em;margin-bottom:13px;color:#bcb09c}
+ #app.is-teacher .cinema-dialogue .speaker{font-size:14px;gap:10px}
+ #app.is-teacher .cinema-dialogue .speaker::before{width:22px}
+ #app.is-teacher .cinema-dialogue #focusText{font-size:20px;line-height:1.85;margin:12px 0}
+ #app.is-teacher .cinema-dialogue .immersive-choice{font-size:16px;line-height:1.7;padding:10px 8px 10px 19px;min-height:48px}
+ #app.is-teacher .cinema-dialogue .encounter-actions{margin-top:12px;padding-left:0}
+ #app.is-teacher .cinema-dialogue .aside{font-size:13px}
+}
+@media(min-width:701px) and (max-height:640px){.is-teacher .cinema-dialogue{padding-top:45px;padding-bottom:20px}.is-teacher .cinema-dialogue #focusText{font-size:21px;line-height:1.65}.is-teacher .cinema-dialogue .encounter-actions{margin-top:8px}}
+@media(prefers-reduced-motion:reduce){.is-teacher .cinema-dialogue{animation:none}.is-teacher .cinema-dialogue .immersive-choice,.is-teacher .cinema-dialogue .immersive-choice::after{transition:none}}
+#app.reduce .cinema-dialogue{animation:none}

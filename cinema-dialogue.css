@@ -1,0 +1,69 @@
+/* The accepted teacher treatment, extended only to narrative surfaces. No image geometry or document selectors. */
+#app.film-scene{--dialogue-font:'Chiron Dialogue','PingFang TC',sans-serif;--thought-font:'Chiron Thought','Songti TC',serif;--dialogue-gold:#d9bd85;--dialogue-white:#fff8eb}
+#app.film-scene:not(.is-teacher) .cinema-dialogue{padding:64px 9vw 27px;border:0;box-shadow:none;background:linear-gradient(0deg,#101110f2,#101110b8 56%,transparent);animation:cinema-line-arrive .25s ease-out both}
+#app.film-scene:not(.is-teacher) .cinema-dialogue>.speaker{display:flex;align-items:center;gap:14px;font:16px/1.5 var(--dialogue-font);letter-spacing:.17em;color:var(--dialogue-gold)}
+#app.film-scene:not(.is-teacher) .cinema-dialogue>.speaker::before{content:'';width:30px;height:1px;background:var(--dialogue-gold);flex:none}
+#app.film-scene:not(.is-teacher) .cinema-dialogue>#focusText{font:400 24px/1.85 var(--dialogue-font);letter-spacing:.035em;color:var(--dialogue-white);max-width:36em;margin:14px 0 12px;text-wrap:pretty;text-shadow:0 2px 12px #0006;outline:none}
+#app.film-scene:not(.is-teacher) .cinema-dialogue.inner-voice>#focusText{font-family:var(--thought-font);max-width:32em;line-height:1.9;color:#e8dcc7}
+#app.film-scene:not(.is-teacher) .cinema-dialogue.inner-voice>.speaker{font:12px/1.6 var(--thought-font);color:#bcb09c;letter-spacing:.15em}
+#app.film-scene:not(.is-teacher) .cinema-dialogue.inner-voice>.speaker::before{width:16px;background:#bcb09c}
+#app.film-scene:not(.is-teacher) .cinema-dialogue>.aside{font:14px/1.8 var(--thought-font);letter-spacing:.04em;color:#d3c7b3;margin:9px 0 4px}
+#app.film-scene .cinema-dialogue .encounter-actions,#app.film-scene .cinema-dialogue .caption-actions{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px 26px;margin-top:14px}
+#app.film-scene .cinema-dialogue .caption-actions{justify-content:flex-end}
+#app.film-scene .cinema-dialogue .encounter-actions{justify-content:flex-start}
+#app.film-scene .cinema-dialogue .scene-reply{font:18px/1.8 var(--dialogue-font);color:#fff3df;letter-spacing:.025em;border:0;padding:0;margin:2px 0 5px;text-shadow:0 2px 8px #0006}
+.cinema-reply-line+.cinema-reply-line{margin-top:8px}
+.reply-name{display:inline;color:#dac296;font:13px/1.8 'Chiron Dialogue',sans-serif;letter-spacing:.08em;margin-right:12px}
+#app.film-scene .cinema-dialogue .concern-replies{gap:5px 24px}
+#app.film-scene .cinema-dialogue .concern-replies button{flex:none;min-width:0}
+#app.film-scene .cinema-dialogue .cinema-choice{position:relative;width:auto;max-width:100%;min-width:0;min-height:46px;padding:9px 20px 9px 23px;border:0;background:none;text-align:left;color:#e4d7bf;font:17px/1.7 var(--dialogue-font);letter-spacing:.035em;transition:color .2s,transform .2s}
+#app.film-scene .cinema-dialogue .cinema-choice::before{content:'›';position:absolute;left:1px;color:var(--dialogue-gold);opacity:.65}
+#app.film-scene .cinema-dialogue .cinema-choice::after{content:'';position:absolute;left:23px;right:20px;bottom:6px;height:1px;background:linear-gradient(90deg,#d9bd8599,transparent);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+#app.film-scene .cinema-dialogue .cinema-choice:hover,#app.film-scene .cinema-dialogue .cinema-choice:focus-visible{opacity:1;color:#fff8e8;transform:translateX(3px)}
+#app.film-scene .cinema-dialogue .cinema-choice:hover::after,#app.film-scene .cinema-dialogue .cinema-choice:focus-visible::after{transform:scaleX(1)}
+#app.film-scene .cinema-dialogue .spoken-choices{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+#app.film-scene .cinema-dialogue .caption-actions>button,#app.film-scene .cinema-dialogue .encounter-actions>button:not(.cinema-choice){font:14px/1.6 var(--dialogue-font);min-height:44px;min-width:0;letter-spacing:.06em;padding:9px 0;color:#e2d5bd;border:0;border-bottom:1px solid #d6be8b44;background:none}
+#app.film-scene .cinema-dialogue .tap-cue{font:11px/1.7 var(--dialogue-font);letter-spacing:.14em;color:#beb4a2;margin-top:18px}
+#app.film-scene .scene-people button{font-family:var(--dialogue-font)}
+#app.film-scene .cinema-dialogue .action-traces{font:12px/1.6 var(--dialogue-font)}
+#app.film-scene .reflection-text>p{font:23px/1.9 var(--thought-font);letter-spacing:.035em;color:#e8dcc7}
+#app.film-scene .reflection-text>.speaker{font:12px var(--thought-font);letter-spacing:.17em;color:#c9b696}
+#app.film-scene .reflection-text .closing-dates{font-family:var(--dialogue-font)}
+#app.film-scene .cinema-dialogue>h2{font-family:var(--thought-font);font-weight:400}
+@keyframes cinema-line-arrive{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:650px),(max-aspect-ratio:4/3){
+ #app.film-scene:not(.is-teacher) .cinema-dialogue{position:relative;padding:25px 26px 26px;background:linear-gradient(transparent,#161614 45px);animation-duration:.2s}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue>.speaker{font-size:14px;gap:10px}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue>.speaker::before{width:22px}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue>#focusText{font-size:20px;line-height:1.8;margin:12px 0;max-width:none}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue.inner-voice>#focusText{font-size:20px;line-height:1.85;max-width:none}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue.inner-voice>.speaker{font-size:12px}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue.inner-voice>.speaker::before{width:16px}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue>.aside{font-size:13px;line-height:1.7}
+ #app.film-scene .cinema-dialogue .scene-reply{font-size:17px;line-height:1.75}
+ #app.film-scene .cinema-dialogue .cinema-choice{font-size:16px;line-height:1.7;padding:10px 4px 10px 19px;min-height:46px}
+ #app.film-scene .cinema-dialogue .concern-replies{flex-direction:column;gap:0}
+ #app.film-scene .cinema-dialogue .concern-replies button{width:auto}
+ #app.film-scene .cinema-dialogue .encounter-actions{gap:7px 20px;margin-top:12px}
+ #app.film-scene .cinema-dialogue .caption-actions{margin-top:12px}
+ #app.film-scene .reflection-text>p{font-size:20px;line-height:1.85}
+}
+@media(max-height:640px) and (min-width:651px) and (min-aspect-ratio:4/3){
+ #app.film-scene:not(.is-teacher) .cinema-dialogue{padding:32px 8vw 18px}
+ #app.film-scene:not(.is-teacher) .cinema-dialogue>#focusText{font-size:21px;line-height:1.7;margin:9px 0}
+ #app.film-scene .cinema-dialogue .scene-reply{font-size:17px;line-height:1.65}
+ #app.film-scene .cinema-dialogue .cinema-choice{font-size:16px;min-height:44px;padding-top:7px;padding-bottom:7px}
+}
+@media(prefers-reduced-motion:reduce){#app.film-scene .cinema-dialogue{animation:none}#app.film-scene .cinema-dialogue .cinema-choice,#app.film-scene .cinema-dialogue .cinema-choice::after{transition:none}}
+body.reduce #app.film-scene .cinema-dialogue{animation:none}
+@media(max-width:650px),(max-aspect-ratio:4/3){
+ /* Keep the existing notebook as a scene object instead of pushing the new dialogue off-screen. */
+ #app.film-scene.is-founded .ledger-on-table{position:absolute;top:-210px;right:22px;left:auto;margin:0;z-index:2;transform:rotate(3deg);transform-origin:top right}
+}
+@media(max-width:650px),(max-aspect-ratio:4/3){
+ #app.film-scene.is-founded .ledger-object{width:170px;height:120px;padding:12px 15px 11px 27px}
+ #app.film-scene.is-founded .ledger-label{font-size:19px;line-height:1.4}
+ #app.film-scene.is-founded .ledger-glimpse{font-size:12px;line-height:1.6}
+ #app.film-scene.is-founded .ledger-prompt{font-size:11px}
+ #app.film-scene.is-founded .ledger-pledge{margin-top:2px;min-height:44px}
+}
